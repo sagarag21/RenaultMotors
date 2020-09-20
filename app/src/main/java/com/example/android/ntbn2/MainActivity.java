@@ -47,29 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
     EditText editText;
+    Button memoryUploadButton;
     Spinner spinner;
     Button btnUpload,btnCapture,btnDisplay;
 
     String currentPhotoPath = null;
     private static final int IMAGE_REQUEST = 1;
-    private static final String apiurl = "https://www.renaultbreakers.co.uk/COD/uploadpaperwork.php";
+    private static final String apiurl = "http://192.168.0.14/fileuploa.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView = (ImageView) findViewById(R.id.im);
+        memoryUploadButton = (Button)findViewById(R.id.memoryUploadId);
         editText = (EditText)findViewById(R.id.editTextTextPersonName2);
         spinner = (Spinner)findViewById(R.id.spinner);
         btnCapture = (Button)findViewById(R.id.captureImg);
         btnUpload = (Button)findViewById(R.id.upld);
 
-        File st = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File f = st;
+        File f = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File[] files = f.listFiles();
-        for (int i = 0;i<files.length;i++)
+
+        if(files.length > 0)
         {
-            files[i].delete();
+            memoryUploadButton.setVisibility(View.VISIBLE);
         }
 
         // Spinner Drop down elements
@@ -99,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                     String encodedImage = encodebitmap(BitmapFactory.decodeFile(filePath));
                     uploadtoserver(encodedImage, filePath);
                 }
+
+                memoryUploadButton.setVisibility(View.GONE);
             }
         });
 
@@ -195,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     count = 0;
+                    memoryUploadButton.setVisibility(View.VISIBLE);
                 }
             }
         })
@@ -215,5 +220,19 @@ public class MainActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(request);
+    }
+
+    public void memoryUpload(View view) {
+        File f = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File[] files = f.listFiles();
+
+        // Get the names of the files by using the .getName() method
+        for (int i = 0; i < files.length; i++) {
+            String filePath = files[i].getAbsolutePath();
+            String encodedImage = encodebitmap(BitmapFactory.decodeFile(filePath));
+            uploadtoserver(encodedImage, filePath);
+        }
+
+        memoryUploadButton.setVisibility(View.GONE);
     }
 }

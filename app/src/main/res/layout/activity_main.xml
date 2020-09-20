@@ -6,19 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:orientation="horizontal">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginRight="25dp"
             android:onClick="captureImage"
             android:id="@+id/captureImg"
             android:text="Capture Image" />
@@ -28,16 +26,17 @@
     <ImageView
         android:id="@+id/im"
         android:layout_width="350dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="14dp"
         android:src="@drawable/ic_launcher_background" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
         android:inputType="textPersonName"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
@@ -46,19 +45,35 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="350dp"
         android:layout_height="54dp"
+        android:gravity="center_horizontal"
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
         android:text="Paper Work"
         android:textAlignment="center"
         android:textSize="25sp" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
 
+    android:layout_height="wrap_content">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/upld"
         android:layout_gravity="center_horizontal"
         android:text="Upload"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/memoryUploadId"
+        android:text="Memory Upload"
+        android:layout_marginTop="14dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:onClick="memoryUpload"/>
+</LinearLayout>
 
 </LinearLayout>
